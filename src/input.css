@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+    --color-greennight: #111813;
+    --color-greennight-light: #19241C;
+    --color-greennight-lighter: #213025;
+    --color-greennight-lightest: #445F4C;
+
+    --color-main: #9c0d38;
+    --color-main-light: #bd0f43;
+  }

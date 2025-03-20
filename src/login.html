@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+      body {
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
+        background-color: #222;
+        color: #bbb;
+      }
+        body > div {
+            margin: 0 auto;
+            padding: 10px;
+            width: 300px;
+            text-align: center;
+        }
+      label{
+        font-size: small;
+      }
+      input{
+        margin: 5px;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #333;
+        background-color: #333;
+        color: white;
+      }
+      input:active, input:focus{
+        outline: 2px solid #555;
+      }
+      button{
+        margin: 5px;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #333;
+        background-color: #333;
+        color: white;
+      }
+      button:hover{
+        background-color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+        <h3>hi</h3>
+        <form method="POST" action="/login">
+            <input type="text" name="username" placeholder="username" required><br>
+            <input type="password" name="password" placeholder="password" required><br><br>
+            <button type="submit">Login</button>
+        </form>
+        <p id="error" style="color: red;"></p>
+    </div>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const error = urlParams.get('error');
+        if (error) {
+            document.getElementById('error').textContent = error;
+            setTimeout(() => {
+                document.getElementById('error').textContent = '';
+            }, 3000);
+        }
+    </script>
+  </body>
+</html>
