@@ -509,6 +509,9 @@
   .max-h-\[32rem\] {
     max-height: 32rem;
   }
+  .max-h-\[64rem\] {
+    max-height: 64rem;
+  }
   .max-h-none {
     max-height: none;
   }
@@ -517,6 +520,9 @@
   }
   .min-h-screen {
     min-height: 100vh;
+  }
+  .w-1 {
+    width: calc(var(--spacing) * 1);
   }
   .w-1\/2 {
     width: calc(1/2 * 100%);
@@ -1191,6 +1197,9 @@
   }
   .bg-greennight-light {
     background-color: var(--color-greennight-light);
+  }
+  .bg-greennight-lighter {
+    background-color: var(--color-greennight-lighter);
   }
   .bg-main {
     background-color: var(--color-main);

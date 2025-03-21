@@ -1,179 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- Head Section -->
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="output.css" />
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-      body {
-        font-family: "Inter", system-ui, -apple-system, sans-serif;
-      }
-      body > div > div > h1 {
-        font-weight: 800;
-      }
-    </style>
-  </head>
+<!-- Head Section -->
 
-  <!-- Body Section -->
-  <body class="bg-greennight text-white">
-    <!-- Navigation Bar -->
-    <div class="p-10 flex items-center justify-between not-md:flex-col bg-greennight-light border-b border-green-200">
-      <div>
-        <h1 class="text-4xl">video upload thing</h1>
-      </div>
-      <div
-        class="p-5 h-16 w-[90%] not-md:mx-3 md:w-[8rem] not-md:mt-6 flex items-center justify-center bg-main rounded-lg cursor-pointer hover:bg-main-light transition-colors duration-200"
-      >
-        <a href="/logout">Log out</a>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="output.css" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+    }
+
+    body>div>div>h1 {
+      font-weight: 800;
+    }
+  </style>
+</head>
+
+<!-- Body Section -->
+
+<body class="bg-greennight text-white">
+  <!-- Navigation Bar -->
+  <div class="p-10 flex items-center justify-between not-md:flex-col bg-greennight-light border-b border-green-200">
+    <div>
+      <h1 class="text-4xl">video upload thing</h1>
     </div>
-
-    <!-- Main Content -->
-    <div class="flex flex-col">
-      <!-- Upload Form Section -->
-      <div id="formDiv" class="m-4 p-6 w-[98%] flex flex-col">
-        <h2 class="text-2xl mb-4">Upload video</h2>
-        <form
-          id="uploadForm"
-          action="/upload"
-          method="post"
-          enctype="multipart/form-data"
-          class="w-full"
-        >
-          <div class="py-5">
-            <label
-              for="videoInput"
-              class="flex flex-col items-center justify-center w-full h-64 border-2 border-greennight-lightest rounded-lg cursor-pointer bg-greennight-light hover:bg-greennight-lighter transition-all duration-75"
-            >
-              <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12.4239 3.25C12.2079 3.25 12.0132 3.34131 11.8763 3.48744L7.26675 8.0941C6.97376 8.3869 6.97361 8.86177 7.26641 9.15476C7.55921 9.44775 8.03408 9.4479 8.32707 9.1551L11.6739 5.81043L11.6739 16C11.6739 16.4142 12.0096 16.75 12.4239 16.75C12.8381 16.75 13.1739 16.4142 13.1739 16L13.1739 5.81455L16.5168 9.15511C16.8098 9.4479 17.2846 9.44774 17.5774 9.15474C17.8702 8.86175 17.87 8.38687 17.5771 8.09408L13.0021 3.52236C12.8646 3.356 12.6566 3.25 12.4239 3.25Z" fill="#a1a1a1"/>
-                  <path d="M5.17188 16C5.17188 15.5858 4.83609 15.25 4.42188 15.25C4.00766 15.25 3.67188 15.5858 3.67188 16V18.5C3.67188 19.7426 4.67923 20.75 5.92188 20.75H18.9227C20.1654 20.75 21.1727 19.7426 21.1727 18.5V16C21.1727 15.5858 20.837 15.25 20.4227 15.25C20.0085 15.25 19.6727 15.5858 19.6727 16V18.5C19.6727 18.9142 19.337 19.25 18.9227 19.25H5.92188C5.50766 19.25 5.17188 18.9142 5.17188 18.5V16Z" fill="#a1a1a1"/>
-                  </svg>                  
-                <p class="my-2 text-sm text-neutral-400">
-                  <span id="fileText">Click to upload or drag and drop</span>
-                </p>
-                <p class="text-xs text-neutral-500 italic">
-                  mp4, webm, ogg, mov, avi, mkv, 3gp, flv
-                </p>
-              </div>
-              <input
-                id="videoInput"
-                type="file"
-                name="video"
-                accept="video/*"
-                class="hidden"
-              />
-            </label>
-          </div>
-            <div class="gap-4 flex items-center md:flex-row flex-col">
-              <input class="h-full w-full text-3xl p-2 pl-4 bg-greennight-light rounded-md  focus:bg-greennight-lighter focus:outline focus:outline-greennight-lighter" type="text" placeholder="filename or leave empty for random" name="title">
-              <input
-                type="submit"
-                value="Upload"
-                class="p-3 px-6 bg-main text-white rounded-lg cursor-pointer not-md:w-full hover:bg-main-light transition-all duration-75"
-              />
-              <button
-                type="reset"
-                class="p-3 px-6 bg-main text-white rounded-lg cursor-pointer not-md:w-full hover:bg-main-light transition-all duration-75"
-              >
-                Clear
-              </button>
-            </div>
-        </form>
-      </div>
-
-      <!-- Video List Section -->
-      <div id="videoList" class="m-4 p-6 w-[98%]">
-        <div class="flex justify-between">
-          <h2 class="text-2xl mb-6">Uploaded videos (new to old)</h2>
-            <div class="flex gap-2 flex-row items-center">
-            <div class="relative">
-              <input type="radio" id="page1" name="page" value="1" class="hidden peer">
-              <label for="page1" class="h-10 w-10 flex items-center justify-center bg-greennight-light rounded-lg select-none cursor-pointer peer-checked:bg-main transition-colors duration-75">1</label>
-            </div>
-            <div class="relative">
-              <input type="radio" id="page2" name="page" value="2" class="hidden peer" checked>
-              <label for="page2" class="h-10 w-10 flex items-center justify-center bg-greennight-light rounded-lg select-none cursor-pointer peer-checked:bg-main transition-colors duration-75">2</label>
-            </div>
-            <div class="relative">
-              <input type="radio" id="page3" name="page" value="3" class="hidden peer">
-              <label for="page3" class="h-10 w-10 flex items-center justify-center bg-greennight-light rounded-lg select-none cursor-pointer peer-checked:bg-main transition-colors duration-75">3</label>
-            </div>
-            <div class="relative">
-              <input type="radio" id="page4" name="page" value="4" class="hidden peer">
-              <label for="page4" class="h-10 w-10 flex items-center justify-center bg-greennight-light rounded-lg select-none cursor-pointer peer-checked:bg-main transition-colors duration-75">4</label>
-            </div>
-            </div>
-        </div>
-        <div id="videoListDiv" class="grid grid-cols-2 gap-4"></div>
-      </div>
-    </div>
-
-    <!-- Message Area -->
     <div
-      id="messageArea"
-      class="p-6 hidden fixed bottom-4 left-4 z-50"
-    >
-      <!-- Success Message -->
-      <div id="successMessage" class="bg-green-600 p-4 rounded-md hidden relative">
-        <button
-          class="absolute right-0 top-0 px-1 rounded-r-md h-full hover:bg-green-400"
-        >
-          <svg
-            class="w-6 h-6 text-neutral-800 dark:text-white"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18 17.94 6M18 18 6.06 6"
-            />
-          </svg>
-        </button>
-        <span id="successMessageText" class="mr-10">
-            Your url: <a id="videoLink" href="#" class="underline"></a>
-        </span>
-      </div>
-
-      <!-- Error Message -->
-      <div id="errorMessage" class="bg-main p-4 rounded-md hidden relative">
-        <button
-          class="absolute right-0 top-0 px-1 rounded-r-md h-full hover:bg-main-light"
-        >
-          <svg
-            class="w-6 h-6"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18 17.94 6M18 18 6.06 6"
-            />
-          </svg>
-        </button>
-        <p class="message-text mr-10"></p>
-      </div>
+      class="p-5 h-16 w-[90%] not-md:mx-3 md:w-[8rem] not-md:mt-6 flex items-center justify-center bg-main rounded-lg cursor-pointer hover:bg-main-light transition-colors duration-200">
+      <a href="/logout">Log out</a>
     </div>
-  </body>
+  </div>
 
-  <!-- Scripts -->
-  <script src="client.js"></script>
+  <!-- Main Content -->
+  <div class="flex flex-col">
+    <!-- Upload Form Section -->
+    <div id="formDiv" class="m-4 p-6 w-[98%] flex flex-col">
+      <h2 class="text-2xl mb-4">Upload video</h2>
+      <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data" class="w-full">
+        <div class="py-5">
+          <label for="videoInput"
+            class="flex flex-col items-center justify-center w-full h-64 border-2 border-greennight-lightest rounded-lg cursor-pointer bg-greennight-light hover:bg-greennight-lighter transition-all duration-75">
+            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+              <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12.4239 3.25C12.2079 3.25 12.0132 3.34131 11.8763 3.48744L7.26675 8.0941C6.97376 8.3869 6.97361 8.86177 7.26641 9.15476C7.55921 9.44775 8.03408 9.4479 8.32707 9.1551L11.6739 5.81043L11.6739 16C11.6739 16.4142 12.0096 16.75 12.4239 16.75C12.8381 16.75 13.1739 16.4142 13.1739 16L13.1739 5.81455L16.5168 9.15511C16.8098 9.4479 17.2846 9.44774 17.5774 9.15474C17.8702 8.86175 17.87 8.38687 17.5771 8.09408L13.0021 3.52236C12.8646 3.356 12.6566 3.25 12.4239 3.25Z"
+                  fill="#a1a1a1" />
+                <path
+                  d="M5.17188 16C5.17188 15.5858 4.83609 15.25 4.42188 15.25C4.00766 15.25 3.67188 15.5858 3.67188 16V18.5C3.67188 19.7426 4.67923 20.75 5.92188 20.75H18.9227C20.1654 20.75 21.1727 19.7426 21.1727 18.5V16C21.1727 15.5858 20.837 15.25 20.4227 15.25C20.0085 15.25 19.6727 15.5858 19.6727 16V18.5C19.6727 18.9142 19.337 19.25 18.9227 19.25H5.92188C5.50766 19.25 5.17188 18.9142 5.17188 18.5V16Z"
+                  fill="#a1a1a1" />
+              </svg>
+              <p class="mt-2 text-sm text-neutral-400">
+                <span id="fileText">Click to upload or drag and drop</span>
+              </p>
+              <p class="text-xs text-neutral-500 italic">
+                mp4, webm, ogg, mov, avi, mkv, 3gp, flv
+              </p>
+              <p class="text-xs text-neutral-500 italic">
+                max. 600mb
+              </p>
+            </div>
+            <input id="videoInput" type="file" name="video" accept="video/*" class="hidden" />
+          </label>
+        </div>
+        <div class="gap-4 flex items-center md:flex-row flex-col">
+          <input
+            class="h-full w-full text-3xl p-2 pl-4 bg-greennight-light rounded-md  focus:bg-greennight-lighter focus:outline focus:outline-greennight-lighter"
+            type="text" placeholder="50 char. max or leave empty for random" name="title" maxlength="50">
+          <input type="submit" value="Upload"
+            class="p-3 px-6 bg-main text-white rounded-lg cursor-pointer not-md:w-full hover:bg-main-light transition-all duration-75" />
+          <button type="reset" id="resetButton"
+            class="p-3 px-6 bg-main text-white rounded-lg cursor-pointer not-md:w-full hover:bg-main-light transition-all duration-75">
+            Clear
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Video List Section -->
+    <div id="videoList" class="m-4 p-6 w-[98%]">
+      <div class="flex justify-between">
+        <h2 class="text-2xl mb-6">Uploaded videos (new to old)</h2>
+        <div class="flex gap-2 flex-row items-center">
+          <div class="relative">
+            <input type="radio" id="page1" name="page" value="1" class="hidden peer">
+            <label for="page1"
+              class="h-10 w-10 flex items-center justify-center bg-greennight-light rounded-lg select-none cursor-pointer peer-checked:bg-main transition-colors duration-75">1</label>
+          </div>
+          <div class="relative">
+            <input type="radio" id="page2" name="page" value="2" class="hidden peer" checked>
+            <label for="page2"
+              class="h-10 w-10 flex items-center justify-center bg-greennight-light rounded-lg select-none cursor-pointer peer-checked:bg-main transition-colors duration-75">2</label>
+          </div>
+          <div class="relative">
+            <input type="radio" id="page3" name="page" value="3" class="hidden peer">
+            <label for="page3"
+              class="h-10 w-10 flex items-center justify-center bg-greennight-light rounded-lg select-none cursor-pointer peer-checked:bg-main transition-colors duration-75">3</label>
+          </div>
+          <div class="relative">
+            <input type="radio" id="page4" name="page" value="4" class="hidden peer">
+            <label for="page4"
+              class="h-10 w-10 flex items-center justify-center bg-greennight-light rounded-lg select-none cursor-pointer peer-checked:bg-main transition-colors duration-75">4</label>
+          </div>
+        </div>
+      </div>
+      <div id="videoListDiv" class="grid grid-cols-2 gap-4"></div>
+    </div>
+  </div>
+
+  <!-- Message Area -->
+  <div id="messageArea" class="p-6 hidden fixed bottom-4 left-4 z-50">
+    <!-- Success Message -->
+    <div id="successMessage" class="bg-green-600 p-4 rounded-md hidden relative">
+      <button class="absolute right-0 top-0 px-1 rounded-r-md h-full hover:bg-green-400">
+        <svg class="w-6 h-6 text-neutral-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+          width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M6 18 17.94 6M18 18 6.06 6" />
+        </svg>
+      </button>
+      <span id="successMessageText" class="mr-10">
+        Your url: <a id="videoLink" href="#" class="underline"></a>
+      </span>
+    </div>
+
+    <!-- Error Message -->
+    <div id="errorMessage" class="bg-main p-4 rounded-md hidden relative">
+      <button class="absolute right-0 top-0 px-1 rounded-r-md h-full hover:bg-main-light">
+        <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+          viewBox="0 0 24 24">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M6 18 17.94 6M18 18 6.06 6" />
+        </svg>
+      </button>
+      <p class="message-text mr-10"></p>
+    </div>
+  </div>
+</body>
+
+<!-- Scripts -->
+<script src="client.js"></script>
+
 </html>
