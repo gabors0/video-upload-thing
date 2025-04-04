@@ -11,7 +11,9 @@ const chalk = require("chalk");
 const app = express();
 const port = 3000;
 // User credentials for basic authentication
-const users = { user: "asdf" };
+const users = {
+  user: "asdf",
+};
 
 // Initialize upload directory
 const uploadDir = path.join(__dirname, "..", "uploads");
