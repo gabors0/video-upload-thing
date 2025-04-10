@@ -1,11 +1,17 @@
 // Import required dependencies
-const express = require("express");
-const multer = require("multer");
-const session = require("express-session");
-const path = require("path");
-const fs = require("fs");
-const crypto = require("crypto");
-const chalk = require("chalk");
+import express from 'express';
+import multer from 'multer';
+import session from 'express-session';
+import path from 'path'; // Using full path module for simplicity
+import { fileURLToPath } from 'url';
+import fsPromises from 'fs/promises'; // For async methods
+import fs from 'fs'; // For synchronous methods like existsSync
+import crypto from 'crypto';
+import chalk from 'chalk';
+
+// Define __dirname and __filename for ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Application Configuration
 const app = express();
@@ -16,11 +22,13 @@ const users = {
 };
 
 // Initialize upload directory
+// Define upload directory
 const uploadDir = path.join(__dirname, "..", "uploads");
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir);
-}
 
+// Check if uploadDir exists, create it if it doesn’t
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
 // Session Configuration
 app.use(
   session({

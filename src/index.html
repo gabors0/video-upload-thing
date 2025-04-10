@@ -13,9 +13,15 @@
     body {
       font-family: "Inter", system-ui, -apple-system, sans-serif;
     }
-
-    body>div>div>h1 {
-      font-weight: 800;
+    .titleMain {
+      font-family: sans-serif;
+      font-weight: bold;
+      font-size: 8px;
+    }
+    .titleSmall {
+      font-family: sans-serif;
+      font-weight: bold;
+      font-size: 16px;
     }
   </style>
 </head>
@@ -26,7 +32,28 @@
   <!-- Navigation Bar -->
   <div class="p-10 flex items-center justify-between not-md:flex-col bg-greennight-light border-b border-green-200">
     <div>
-      <h1 class="text-4xl">video upload thing</h1>
+      <h1 class="titleMain font-mon lg:block hidden select-none">
+        <a href="https://github.com/gabors0/video-upload-thing" target="_blank">
+        <pre class="hover:text-[#b3fac6] transition-colors duration-200">
+
+
+              _/        _/                                                      _/                            _/                _/      _/        _/                     
+ _/      _/        _/_/_/    _/_/      _/_/                _/    _/  _/_/_/    _/    _/_/      _/_/_/    _/_/_/              _/_/_/_/  _/_/_/        _/_/_/      _/_/_/  
+_/      _/  _/  _/    _/  _/_/_/_/  _/    _/  _/_/_/_/_/  _/    _/  _/    _/  _/  _/    _/  _/    _/  _/    _/  _/_/_/_/_/    _/      _/    _/  _/  _/    _/  _/    _/   
+ _/  _/    _/  _/    _/  _/        _/    _/              _/    _/  _/    _/  _/  _/    _/  _/    _/  _/    _/                _/      _/    _/  _/  _/    _/  _/    _/    
+  _/      _/    _/_/_/    _/_/_/    _/_/                  _/_/_/  _/_/_/    _/    _/_/      _/_/_/    _/_/_/                  _/_/  _/    _/  _/  _/    _/    _/_/_/     
+                                                                 _/                                                                                              _/      
+                                                                _/                                                                                          _/_/         
+         </pre></a>
+      </h1>
+      <h1 class="titleSmall lg:hidden select-none">
+        <a href="https://github.com/gabors0/video-upload-thing" target="_blank">
+        <pre class="hover:text-[#b3fac6] transition-colors duration-200">
+__  __ __ __  _____ 
+\ \/ /|  |  ||_   _|
+ \__/  \___/   |_|  
+        </pre></a>
+      </h1>
     </div>
     <div
       class="p-5 h-16 w-[90%] not-md:mx-3 md:w-[8rem] not-md:mt-6 flex items-center justify-center bg-main rounded-lg cursor-pointer hover:bg-main-light transition-colors duration-200">
@@ -87,7 +114,7 @@
           <div class="relative">
             <input type="radio" id="page1" name="page" value="1" class="hidden peer">
             <label for="page1"
-              class="h-10 w-10 flex items-center justify-center bg-greennight-light rounded-lg select-none cursor-pointer peer-checked:bg-main transition-colors duration-75">1</label>
+              class="h-10 w-10 flex items-center justify-center bg-greennight-light rounded-lg select-none cursor-pointer peer-checked:bg-main not-md:outline-4 outline-[#5d916b] transition-colors duration-75">1</label>
           </div>
           <div class="relative">
             <input type="radio" id="page2" name="page" value="2" class="hidden peer" checked>
