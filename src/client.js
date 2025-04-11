@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const successMessageText = document.getElementById("successMessageText");
   const titleInput = document.querySelector('input[name="title"]');
   const resetButton = document.getElementById("resetButton");
+  const modal = document.getElementById("modal");
 
   // Drag and drop handlers
   dropZone.addEventListener("dragover", (e) => {
@@ -118,6 +119,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  let allVideos = [];
+  let currentIndex = 0;
+  const videosPerPage = 10; // Number of videos to show per "Load More" click
+  
   async function loadVideos() {
     try {
       console.log("Fetching videos...");
@@ -127,68 +132,114 @@ document.addEventListener("DOMContentLoaded", () => {
         throw new Error(`HTTP error! status: ${response.status} - ${text}`);
       }
       const data = await response.json();
-      // for debug only
-      // console.log("Received videos:", data);
-
+  
       if (data.success && Array.isArray(data.videos)) {
-        if (data.videos.length > 0) {
-          const videosHtml = data.videos
-            .sort((a, b) => new Date(b.uploadDate) - new Date(a.uploadDate))
-            .map((video) => {
-              const ext = video.filename.split(".").pop().toLowerCase();
-              const mimeTypes = {
-                mp4: "video/mp4",
-                webm: "video/webm",
-                ogg: "video/ogg",
-                mov: "video/quicktime",
-                avi: "video/x-msvideo",
-                mkv: "video/x-matroska",
-                "3gp": "video/3gpp",
-                flv: "video/x-flv",
-              };
-              const mimeType = mimeTypes[ext] || "video/mp4";
-
-              return `
-              <div class="bg-greennight-light p-4 rounded-lg flex flex-col justify-between h-full">
-              <div>
-                  <video controls class="rounded-lg max-h-[32rem]" preload="metadata">
-                      <source src="${video.url}" type="${mimeType}">
-                      Your browser does not support the video tag.
-                  </video>
-              </div>
-              <div class="flex md:justify-between not-md:items-start not-md:flex-col items-center mt-4">
-                  <div class="text-sm text-neutral-400 mt-2 text-left">
-                      <span class="text-white text-2xl">${video.filename}</span>
-                      <br>Uploaded: ${new Date(video.uploadDate).toLocaleString()}
-                      <br>URL: <a href="${video.url}" target="_blank" class="text-blue-400">${video.url}</a>
-                  </div>
-                  <div class="h-full not-md:w-max not-md:mb-2"><button class="delete-btn h-full bg-main p-3 rounded-md not-md:mt-3 hover:bg-main-light transition-all duration-75 cursor-pointer" onclick="deleteVideo('${video.filename}')">Delete</button></div>
-              </div>
-          </div>
-                            `;
-            })
-            .join("");
-          videoListDiv.innerHTML = videosHtml;
-        } else {
-          videoListDiv.innerHTML = `
-                        <div class="bg-greennight-light p-4 rounded-lg text-center text-neutral-400">
-                            No videos uploaded yet.
-                        </div>
-                    `;
-        }
+        allVideos = data.videos.sort(
+          (a, b) => new Date(b.uploadDate) - new Date(a.uploadDate)
+        );
+        currentIndex = 0; // Reset index
+        renderVideos();
       } else {
         throw new Error("Invalid response format from /videos endpoint");
       }
     } catch (error) {
       console.error("Error loading videos:", error);
       videoListDiv.innerHTML = `
-                <div class="bg-red-600 p-4 rounded-lg text-center">
-                    Error loading videos: ${error.message}
-                </div>
-            `;
+        <div class="bg-red-600 p-4 rounded-lg text-center">
+          Error loading videos: ${error.message}
+        </div>
+      `;
     }
   }
-
+  
+  function renderVideos() {
+    const videoListDiv = document.getElementById("videoListDiv"); // Ensure this ID matches your HTML
+    const nextVideos = allVideos.slice(
+      currentIndex,
+      currentIndex + videosPerPage
+    );
+  
+    if (currentIndex === 0 && nextVideos.length === 0) {
+      videoListDiv.innerHTML = `
+        <div class="bg-greennight-light p-4 rounded-lg text-center text-neutral-400">
+          No videos uploaded yet.
+        </div>
+      `;
+      return;
+    }
+  
+    const videosHtml = nextVideos
+      .map((video) => {
+        const ext = video.filename.split(".").pop().toLowerCase();
+        const mimeTypes = {
+          mp4: "video/mp4",
+          webm: "video/webm",
+          ogg: "video/ogg",
+          mov: "video/quicktime",
+          avi: "video/x-msvideo",
+          mkv: "video/x-matroska",
+          "3gp": "video/3gpp",
+          flv: "video/x-flv",
+        };
+        const mimeType = mimeTypes[ext] || "video/mp4";
+  
+        return `
+          <div class="bg-greennight-light p-4 rounded-lg flex flex-col justify-between h-full">
+            <div>
+              <video controls class="rounded-lg max-h-[32rem]" preload="metadata">
+                <source src="${video.url}" type="${mimeType}">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="flex md:justify-between not-md:items-start not-md:flex-col items-center mt-4">
+              <div class="text-sm text-neutral-400 mt-2 text-left">
+                <span class="text-white text-2xl">${video.filename}</span>
+                <br>Uploaded: ${new Date(video.uploadDate).toLocaleString()}
+                <br>URL: <a href="${video.url}" target="_blank" class="text-blue-400">${
+          video.url
+        }</a>
+              </div>
+              <div class="h-full not-md:w-max not-md:mb-2">
+                <button class="delete-btn h-full bg-main p-3 rounded-md not-md:mt-3 hover:bg-main-light transition-all duration-75 cursor-pointer" onclick="deleteVideo('${
+                  video.filename
+                }')">Delete</button>
+              </div>
+            </div>
+          </div>
+        `;
+      })
+      .join("");
+  
+    // Append new videos instead of replacing
+    if (currentIndex === 0) {
+      videoListDiv.innerHTML = videosHtml;
+    } else {
+      videoListDiv.innerHTML += videosHtml;
+    }
+  
+    // Update index
+    currentIndex += videosPerPage;
+  
+    // Show or hide "Load More" button
+    updateLoadMoreButton();
+  }
+  
+  function updateLoadMoreButton() {
+    let loadMoreBtn = document.getElementById("loadMoreBtn");
+    if (!loadMoreBtn) {
+      loadMoreBtn = document.createElement("button");
+      loadMoreBtn.id = "loadMoreBtn";
+      loadMoreBtn.className =
+        "bg-main p-3 rounded-md hover:bg-main-light transition-all duration-75 cursor-pointer mt-4";
+      loadMoreBtn.textContent = "Load More...";
+      loadMoreBtn.onclick = renderVideos;
+      videoListDiv.insertAdjacentElement("afterend", loadMoreBtn);
+    }
+  
+    // Hide button if no more videos to load
+    loadMoreBtn.style.display =
+      currentIndex >= allVideos.length ? "none" : "block";
+  }
   window.deleteVideo = async function (filename) {
     if (!confirm(`Are you sure you want to delete ${filename}?`)) return;
 
@@ -267,4 +318,9 @@ function updateVideoHeights(columns) {
       video.classList.add("max-h-[32rem]");
     }
   });
+}
+
+function toggleModal() {
+  modal.classList.toggle("flex")
+  modal.classList.toggle("hidden")
 }

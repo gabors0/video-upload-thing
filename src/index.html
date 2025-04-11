@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- Head Section -->
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+  <title>video-upload-thing</title>
   <link rel="stylesheet" href="output.css" />
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
@@ -23,18 +22,19 @@
       font-weight: bold;
       font-size: 16px;
     }
+    #modal {
+      z-index: 99;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
   </style>
 </head>
 
-<!-- Body Section -->
-
 <body class="bg-greennight text-white">
-  <!-- Navigation Bar -->
+  <!-- Navbar -->
   <div class="p-10 flex items-center justify-between not-md:flex-col bg-greennight-light border-b border-green-200">
     <div>
       <h1 class="titleMain font-mon lg:block hidden select-none">
-        <a href="https://github.com/gabors0/video-upload-thing" target="_blank">
-        <pre class="hover:text-[#b3fac6] transition-colors duration-200">
+        <pre onclick="toggleModal()" class="hover:text-[#b3fac6] transition-colors duration-200 cursor-pointer">
 
 
               _/        _/                                                      _/                            _/                _/      _/        _/                     
@@ -44,7 +44,7 @@ _/      _/  _/  _/    _/  _/_/_/_/  _/    _/  _/_/_/_/_/  _/    _/  _/    _/  _/
   _/      _/    _/_/_/    _/_/_/    _/_/                  _/_/_/  _/_/_/    _/    _/_/      _/_/_/    _/_/_/                  _/_/  _/    _/  _/  _/    _/    _/_/_/     
                                                                  _/                                                                                              _/      
                                                                 _/                                                                                          _/_/         
-         </pre></a>
+         </pre>
       </h1>
       <h1 class="titleSmall lg:hidden select-none">
         <a href="https://github.com/gabors0/video-upload-thing" target="_blank">
@@ -56,12 +56,12 @@ __  __ __ __  _____
       </h1>
     </div>
     <div
-      class="p-5 h-16 w-[90%] not-md:mx-3 md:w-[8rem] not-md:mt-6 flex items-center justify-center bg-main rounded-lg cursor-pointer hover:bg-main-light transition-colors duration-200">
+      class="p-5 h-16 w-[90%] not-md:mx-3 md:w-[8rem] not-md:mt-6 flex items-center justify-center bg-wine rounded-lg cursor-pointer hover:bg-wine-light transition-colors duration-200">
       <a href="/logout">Log out</a>
     </div>
   </div>
 
-  <!-- Main Content -->
+  <!-- Main content -->
   <div class="flex flex-col">
     <!-- Upload Form Section -->
     <div id="formDiv" class="m-4 p-6 w-[98%] flex flex-col">
@@ -97,9 +97,9 @@ __  __ __ __  _____
             class="h-full w-full text-3xl p-2 pl-4 bg-greennight-light rounded-md  focus:bg-greennight-lighter focus:outline focus:outline-greennight-lighter"
             type="text" placeholder="50 char. max or leave empty for random" name="title" maxlength="50">
           <input type="submit" value="Upload"
-            class="p-3 px-6 bg-main text-white rounded-lg cursor-pointer not-md:w-full hover:bg-main-light transition-all duration-75" />
+            class="p-3 px-6 bg-wine text-white rounded-lg cursor-pointer not-md:w-full hover:bg-wine-light transition-all duration-75" />
           <button type="reset" id="resetButton"
-            class="p-3 px-6 bg-main text-white rounded-lg cursor-pointer not-md:w-full hover:bg-main-light transition-all duration-75">
+            class="p-3 px-6 bg-wine text-white rounded-lg cursor-pointer not-md:w-full hover:bg-wine-light transition-all duration-75">
             Clear
           </button>
         </div>
@@ -114,22 +114,22 @@ __  __ __ __  _____
           <div class="relative">
             <input type="radio" id="page1" name="page" value="1" class="hidden peer">
             <label for="page1"
-              class="h-10 w-10 flex items-center justify-center bg-greennight-light rounded-lg select-none cursor-pointer peer-checked:bg-main not-md:outline-4 outline-[#5d916b] transition-colors duration-75">1</label>
+              class="h-10 w-10 flex items-center justify-center bg-greennight-light rounded-lg select-none cursor-pointer peer-checked:bg-wine not-md:outline-4 outline-[#5d916b] transition-colors duration-75">1</label>
           </div>
           <div class="relative">
             <input type="radio" id="page2" name="page" value="2" class="hidden peer" checked>
             <label for="page2"
-              class="h-10 w-10 flex items-center justify-center bg-greennight-light rounded-lg select-none cursor-pointer peer-checked:bg-main transition-colors duration-75">2</label>
+              class="h-10 w-10 flex items-center justify-center bg-greennight-light rounded-lg select-none cursor-pointer peer-checked:bg-wine transition-colors duration-75">2</label>
           </div>
           <div class="relative">
             <input type="radio" id="page3" name="page" value="3" class="hidden peer">
             <label for="page3"
-              class="h-10 w-10 flex items-center justify-center bg-greennight-light rounded-lg select-none cursor-pointer peer-checked:bg-main transition-colors duration-75">3</label>
+              class="h-10 w-10 flex items-center justify-center bg-greennight-light rounded-lg select-none cursor-pointer peer-checked:bg-wine transition-colors duration-75">3</label>
           </div>
           <div class="relative">
             <input type="radio" id="page4" name="page" value="4" class="hidden peer">
             <label for="page4"
-              class="h-10 w-10 flex items-center justify-center bg-greennight-light rounded-lg select-none cursor-pointer peer-checked:bg-main transition-colors duration-75">4</label>
+              class="h-10 w-10 flex items-center justify-center bg-greennight-light rounded-lg select-none cursor-pointer peer-checked:bg-wine transition-colors duration-75">4</label>
           </div>
         </div>
       </div>
@@ -137,7 +137,7 @@ __  __ __ __  _____
     </div>
   </div>
 
-  <!-- Message Area -->
+  <!-- Message area -->
   <div id="messageArea" class="p-6 hidden fixed bottom-4 left-4 z-50">
     <!-- Success Message -->
     <div id="successMessage" class="bg-green-600 p-4 rounded-md hidden relative">
@@ -154,8 +154,8 @@ __  __ __ __  _____
     </div>
 
     <!-- Error Message -->
-    <div id="errorMessage" class="bg-main p-4 rounded-md hidden relative">
-      <button class="absolute right-0 top-0 px-1 rounded-r-md h-full hover:bg-main-light">
+    <div id="errorMessage" class="bg-wine p-4 rounded-md hidden relative">
+      <button class="absolute right-0 top-0 px-1 rounded-r-md h-full hover:bg-wine-light">
         <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
           viewBox="0 0 24 24">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -163,6 +163,31 @@ __  __ __ __  _____
         </svg>
       </button>
       <p class="message-text mr-10"></p>
+    </div>
+  </div>
+
+  <!--About modal-->
+  <div id="modal" class="hidden fixed top-0 left-0 w-full h-full items-center justify-center">
+    <div id="modalcontent" class="flex h-[60vh] w-[130vh] bg-greennight-lighter rounded-xl p-6 border border-greennight-lightest">
+      <div class="flex flex-col w-full space-y-5 justify-between">
+
+        <div>
+          <div class="flex flex-row justify-between mb-4">
+            <h3 class="text-3xl">About</h3>
+            <button class="hover:bg-wine-light cursor-pointer h-fit transition-colors duration-75" onclick="toggleModal()">
+              close
+            </button>
+          </div>
+
+          <p>-</p>
+          <h4 class="text-xl">Themes</h4>
+          
+        </div>
+
+        <div class="text-neutral-400 text-center w-full">
+          made by <a href="https://github.com/gabors0" target="_blank" class="underline hover:text-wine-light">gabors0</a>
+        </div>
+      </div>
     </div>
   </div>
 </body>
