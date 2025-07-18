@@ -4,7 +4,7 @@
     "chalk": "^4.1.2",
     "express": "^4.21.2",
     "express-session": "^1.18.1",
-    "multer": "^2.0.1",
+    "multer": "^2.0.2",
     "tailwindcss": "^4.0.14"
   },
   "name": "video-upload-ting-but-its-expressjs",
